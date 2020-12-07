@@ -48,7 +48,7 @@ class engine_typeController extends Controller
     public function show($id)
     {
         $engine_type = Engine_type::findOrFail($id);
-        dd($Engine_type);
+        return view('engine_types.show',compact('engine_type'));
     }
 
     /**

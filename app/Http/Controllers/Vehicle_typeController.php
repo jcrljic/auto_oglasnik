@@ -48,7 +48,7 @@ class Vehicle_typeController extends Controller
     public function show($id)
     {
         $Vehicle_type = Vehicle_type::findOrFail($id);
-        dd($Vehicle_type);
+        return view('vehicle_types.show',compact('Vehicle_type'));
     }
 
     /**

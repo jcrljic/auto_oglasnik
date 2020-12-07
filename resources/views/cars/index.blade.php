@@ -5,7 +5,8 @@
 
 
 @section('content')
-<table class="table table-striped">
+<a href="{{ route('cars.create') }}" class="btn btn-primary mt-5">Add</a>
+<table class="table table-striped mt-3">
   <thead>
     <tr>
       <th scope="col">id</th>
@@ -22,6 +23,7 @@
       <th scope="col">location</th>
       <th scope="col">lat</th>
       <th scope="col">lng</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -41,6 +43,11 @@
            <td>{{$car->location}}</td>
            <td>{{$car->lat}}</td>
            <td>{{$car->lng}}</td>
+           <td>
+            <a class="btn btn-outline-primary" href="{{route('cars.show',['car' => $car->id]) }}">Details</a>
+            <a class="btn btn-outline-primary" href="{{route('cars.edit',['car' => $car->id]) }}">Edit</a>
+
+           </td>
            </tr>
     @endforeach
   </tbody>

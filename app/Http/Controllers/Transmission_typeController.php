@@ -47,7 +47,7 @@ class Transmission_typeController extends Controller
     public function show($id)
     {
         $Transmission_type = Transmission_type::findOrFail($id);
-        dd($Transmission_type);
+        return view('transmission_types.show',compact('Transmission_type'));
     }
 
     /**

@@ -48,7 +48,8 @@ class CarController extends Controller
     public function show($id)
     {
         $car = Car::findOrFail($id);
-        dd($car);
+        return view('cars.show',compact('car'));
+        
     }
 
     /**

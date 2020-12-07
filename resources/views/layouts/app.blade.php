@@ -19,31 +19,31 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('home')}}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/cars">Cars</a>
+        <a class="nav-link" href="{{ route('cars.index')}}">Cars</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/engine_types">Engine_types</a>
+        <a class="nav-link" href="{{ route('engine_types.index')}}">Engine_types</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Messages">Messages</a>
+        <a class="nav-link" href="{{ route('Messages.index')}}">Messages</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Roles">Roles</a>
+        <a class="nav-link" href="{{ route('Roles.index')}}">Roles</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Sales">Sales</a>
+        <a class="nav-link" href="{{ route('Sales.index')}}">Sales</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Transmission_types">Transmission_types</a>
+        <a class="nav-link" href="{{ route('Transmission_types.index')}}">Transmission_types</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/users">Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Vehicle_types">Vehicle_types</a>
+        <a class="nav-link" href="{{ route('Vehicle_types.index')}}">Vehicle_types</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

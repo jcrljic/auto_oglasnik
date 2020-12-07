@@ -48,7 +48,7 @@ class SaleController extends Controller
     public function show($id)
     {
         $Sale = Sale::findOrFail($id);
-        dd($Sale);
+        return view('sales.show',compact('Sale'));
     }
 
     /**

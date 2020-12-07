@@ -23,7 +23,7 @@ use App\Https\Controllers\Vehicle;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('cars',CarController::class);
 Route::resource('engine_types',engine_typeController::class);
