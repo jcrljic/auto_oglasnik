@@ -21,7 +21,10 @@ class CreateUsersTable extends Migration
             $table->dateTime('last_online')->nullable();
             $table->string('password');
             $table->string('phone_number');
-            $table->foreignId('role_id')->constrained();
+            $table->foreignId('role_id')
+            ->nullable()
+            ->constrained()
+            ->onDelete('set null');
             
             /*created_at, updated_at */
             $table->timestamps();

@@ -19,7 +19,7 @@ class CarSeeder extends Seeder
             'first_registration' => Carbon::parse('2010-01-01'),
             'kilometer' => 80000.00,
             'power' => 100.00,
-            'cubic_capaticy'=> '2000',
+            'cubic_capacity'=> '2000',
             'colour' => 'blue',
             'interior_features' => 'navigacija',
             'make'=> 'BMW',

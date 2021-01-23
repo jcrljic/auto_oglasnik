@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class engine_typeSeeder extends Seeder
+class Engine_typeSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class vehicle_typeSeeder extends Seeder
+class Vehicle_typeSeeder extends Seeder
 {
     /**
      * Run the database seeds.

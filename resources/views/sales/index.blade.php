@@ -5,13 +5,16 @@
 
 
 @section('content')
-<a href="{{ route('Sales.create') }}" class="btn btn-primary mt-5">Add</a>
+<a href="{{ route('sales.create') }}" class="btn btn-primary mt-5">Add</a>
 <table class="table table-striped mt-3">
   <thead>
     <tr>
       <th scope="col">id</th>
       <th scope="col">price</th>
-      
+      <th scope="col">buyer_id</th>
+      <th scope="col">seller_id</th>
+      <th scope="col">Actions</th>
+
     </tr>
   </thead>
   <tbody>
@@ -19,9 +22,11 @@
     <tr>
            <td>{{$sale->id}}</td>
            <td>{{$sale->price}}</td>
+           <td>{{$sale->buyer_id}}</td>
+           <td>{{$sale->seller_id}}</td>
            <td>
-            <a class="btn btn-outline-primary" href="{{route('Sales.show',['Sale' => $sale->id]) }}">Details</a>
-            <a class="btn btn-outline-primary" href="{{route('Sales.edit',['Sale' => $sale->id]) }}">Edit</a>
+            <a class="btn btn-outline-primary" href="{{route('sales.show',['sale' => $sale->id]) }}">Details</a>
+            <a class="btn btn-outline-primary" href="{{route('sales.edit',['sale' => $sale->id]) }}">Edit</a>
 
            </td>
         

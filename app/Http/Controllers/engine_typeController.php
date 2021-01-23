@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\engine_type;
 
-class engine_typeController extends Controller
+class Engine_typeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class engine_typeController extends Controller
      */
     public function create()
     {
-        //
+        return view('engine_types.create');
     }
 
     /**
@@ -36,6 +36,12 @@ class engine_typeController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            
+        ]);
+        $engine_type = Engine_type::create($validated);
+        return view('engine_types.show', compact('engine_type'));
         //
     }
 
@@ -59,7 +65,8 @@ class engine_typeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $engine_type = Engine_type::findOrFail($id);
+        return view('engine_types.edit',compact('engine_type'));
     }
 
     /**
@@ -71,7 +78,14 @@ class engine_typeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            
+        ]);
+        $engine_type = Engine_type::findOrFail($id);
+        $engine_type->fill($validated);
+        $engine_type->save();
+        return view('engine_types.show', compact('engine_type'));
     }
 
     /**
@@ -82,6 +96,8 @@ class engine_typeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Engine_type::destroy($id);
+ 
+        return redirect()->route('engine_types.index');
     }
 }

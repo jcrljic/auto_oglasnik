@@ -25,7 +25,7 @@ class Vehicle_typeController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehicle_types.create');
     }
 
     /**
@@ -36,6 +36,11 @@ class Vehicle_typeController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:vehicle_types|max:255',
+        ]);
+        $vehicle_type = Vehicle_type::create($validated);
+        return view('vehicle_types.show', compact('vehicle_type'));
         //
     }
 
@@ -47,8 +52,8 @@ class Vehicle_typeController extends Controller
      */
     public function show($id)
     {
-        $Vehicle_type = Vehicle_type::findOrFail($id);
-        return view('vehicle_types.show',compact('Vehicle_type'));
+        $vehicle_type = Vehicle_type::findOrFail($id);
+        return view('vehicle_types.show',compact('vehicle_type'));
     }
 
     /**
@@ -59,7 +64,8 @@ class Vehicle_typeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vehicle_type = Vehicle_type::findOrFail($id);
+        return view('vehicle_types.edit',compact('vehicle_type'));
     }
 
     /**
@@ -71,7 +77,13 @@ class Vehicle_typeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:vehicle_types|max:255',
+        ]);
+        $vehicle_type = Vehicle_type::findOrFail($id);
+        $vehicle_type->fill($validated);
+        $vehicle_type->save();
+        return view('vehicle_types.show', compact('vehicle_type'));
     }
 
     /**
@@ -82,6 +94,8 @@ class Vehicle_typeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Vehicle_type::destroy($id);
+ 
+        return redirect()->route('vehicle_types.index');    
     }
 }

@@ -24,7 +24,7 @@ class Transmission_typeController extends Controller
      */
     public function create()
     {
-        //
+        return view('transmission_types.create');
     }
 
     /**
@@ -35,6 +35,11 @@ class Transmission_typeController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:transmission_types|max:255',
+        ]);
+        $transmission_type = Transmission_type::create($validated);
+        return view('transmission_types.show', compact('transmission_type'));
         //
     }
 
@@ -46,8 +51,8 @@ class Transmission_typeController extends Controller
      */
     public function show($id)
     {
-        $Transmission_type = Transmission_type::findOrFail($id);
-        return view('transmission_types.show',compact('Transmission_type'));
+        $transmission_type = Transmission_type::findOrFail($id);
+        return view('transmission_types.show',compact('transmission_type'));
     }
 
     /**
@@ -58,7 +63,8 @@ class Transmission_typeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transmission_type = Transmission_type::findOrFail($id);
+        return view('transmission_types.edit',compact('transmission_type'));
     }
 
     /**
@@ -70,7 +76,15 @@ class Transmission_typeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
+        $validated = $request->validate([
+            'name' => 'required|unique:transmission_types|max:255',
+        ]);
+        $transmission_type = Transmission_type::findOrFail($id);
+        $transmission_type->fill($validated);
+        $transmission_type->save();
+        return view('transmission_types.show', compact('transmission_type'));
     }
 
     /**
@@ -81,6 +95,8 @@ class Transmission_typeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Transmission_type::destroy($id);
+ 
+        return redirect()->route('transmission_types.index'); 
     }
 }

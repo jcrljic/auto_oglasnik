@@ -13,7 +13,7 @@ class MessageSeeder extends Seeder
     public function run()
     {
         DB::table('messages')->insert([
-            'message_body' => 'Str::random(20)',
+            'message_body' => 'Bok zanima me automobil',
             'from_id' => 1,
             'to_id' => 1,
             

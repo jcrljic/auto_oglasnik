@@ -17,10 +17,18 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->decimal('price');
-            $table->unsignedBigInteger('buyer_id');
-            $table->foreign('buyer_id')->references('id')->on('users');
-            $table->unsignedBigInteger('seller_id');
-            $table->foreign('seller_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('buyer_id');
+            // $table->foreign('buyer_id')->references('id')->on('users');
+            $table->foreignId('buyer_id')
+            ->nullable()
+            ->constrained('users')
+            ->onDelete('set null');
+            // $table->unsignedBigInteger('seller_id');
+            // $table->foreign('seller_id')->references('id')->on('users');
+            $table->foreignId('seller_id')
+            ->nullable()
+            ->constrained('users')
+            ->onDelete('set null');
         });
     }
 

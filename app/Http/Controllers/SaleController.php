@@ -14,7 +14,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::paginate();
+        $sales = Sale::with(['user'])->paginate();
         return view('sales.index',compact('sales'));
     }
 
@@ -25,7 +25,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('sales.create');
     }
 
     /**
@@ -36,6 +36,13 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'price' => 'required|max:255',
+            'buyer_id' => 'required|max:255',
+            'seller_id' => 'required|max:255',
+        ]);
+        $sale = Sale::create($validated);
+        return view('sales.show', compact('sale'));
         //
     }
 
@@ -47,8 +54,8 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        $Sale = Sale::findOrFail($id);
-        return view('sales.show',compact('Sale'));
+        $sale = Sale::findOrFail($id);
+        return view('sales.show',compact('sale'));
     }
 
     /**
@@ -59,7 +66,8 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+        return view('sales.edit',compact('sale'));
     }
 
     /**
@@ -71,7 +79,15 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'price' => 'required|max:255',
+            'buyer_id' => 'required|max:255',
+            'seller_id' => 'required|max:255',
+        ]);
+        $sale = Sale::findOrFail($id);
+        $sale->fill($validated);
+        $sale->save();
+        return view('sales.show', compact('sale'));
     }
 
     /**
@@ -82,6 +98,8 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Sale::destroy($id);
+ 
+        return redirect()->route('sales.index');
     }
 }

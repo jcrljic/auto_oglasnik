@@ -20,7 +20,7 @@ class CreateCarsTable extends Migration
             $table->date('first_registration');
             $table->float('kilometer');
             $table->float('power');
-            $table->string('cubic_capaticy');
+            $table->string('cubic_capacity');
             $table->string('colour');
             $table->text('interior_features');
             $table->string('make');
@@ -29,11 +29,24 @@ class CreateCarsTable extends Migration
             $table->string('location');
             $table->decimal('lat');
             $table->decimal('lng');
-            $table->foreignId('vehicle_type_id')->constrained();
-            $table->foreignId('engine_type_id')->constrained();
-            $table->foreignId('transmission_type_id')->constrained();
-            $table->unsignedBigInteger('owner_id');
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreignId('vehicle_type_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+            $table->foreignId('engine_type_id')
+            ->nullable()
+            ->constrained()
+            ->onDelete('set null');
+            $table->foreignId('transmission_type_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+            // $table->unsignedBigInteger('owner_id');
+            // $table->foreign('owner_id')->references('id')->on('users')->nullable();
+            $table->foreignId('owner_id')
+            ->nullable()
+            ->constrained('users')
+            ->onDelete('set null');
 
 
 
